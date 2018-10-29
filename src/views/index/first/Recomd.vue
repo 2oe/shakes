@@ -39,7 +39,10 @@
 
 <script>
 import comment from '@/components/Comment.vue';
+// 分享
 import soshm from 'soshm';
+// 动画
+import anime from 'animejs'
 import 'soshm/dist/soshm.min.js';
   export default {
     data(){
@@ -87,6 +90,13 @@ import 'soshm/dist/soshm.min.js';
         }else{
           this.active = true;
         }
+        this.CSStransforms = anime({
+          targets: '.lover',
+          translateY:[0,-300],
+          scale: [0.8,2],
+          rotate: ['2turn','1turn'],
+          loop:true
+        });
         this.$refs.lover.style.left = x - 35 + 'px';
         this.$refs.lover.style.top = y - 35 + 'px';
         this.y = y;
@@ -96,7 +106,8 @@ import 'soshm/dist/soshm.min.js';
         setTimeout(()=>{
           that.$refs.lover.style.top = this.y-60;
           that.$refs.lover.style.display='none';
-        },2000)
+        },1000)
+        this.CSStransforms.restart();
       }
     },
     mounted(){
